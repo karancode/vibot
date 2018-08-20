@@ -1,0 +1,31 @@
+{
+  "name": "vibot",
+  "version": "1.0.0",
+  "description": "viber bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kdthanvi/vibot.git"
+  },
+  "keywords": [
+    "node",
+    "viber",
+    "bot"
+  ],
+  "author": "karan.thanvi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kdthanvi/vibot/issues"
+  },
+  "homepage": "https://github.com/kdthanvi/vibot#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "request": "^2.88.0",
+    "viber-bot": "^1.0.13",
+    "winston": "^3.0.0",
+    "winston-console-formatter": "^1.0.0-beta.3"
+  }
+}
