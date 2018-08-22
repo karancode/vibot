@@ -5,6 +5,7 @@ const localConfig = require('./config');
 const ViberBot = require('viber-bot').Bot;
 const BotEvents = require('viber-bot').Events;
 const TextMessage = require('viber-bot').Message.Text;
+const KeyboardMessage = require('viber-bot').Message.Keyboard;
 const winston = require('winston');
 const toYAML = require('winston-console-formatter');
 var request = require('request');
@@ -23,7 +24,9 @@ const logger = createLogger();
 function say(response, message) {
     response.send(new TextMessage(message));
 }
-
+function saykeyboard(response){
+    response.send(new KeyboardMessage(SAMPLE_KEYBOARD));
+}
 
 // Creating the bot with access token, name and avatar
 const bot = new ViberBot(logger, {
@@ -32,6 +35,24 @@ const bot = new ViberBot(logger, {
     avatar: "http://api.adorable.io/avatar/200/isitup" // It is recommended to be 720x720, and no more than 100kb.
 });
 
+const SAMPLE_KEYBOARD = {
+	"Type": "keyboard",
+	"Revision": 1,
+	"Buttons": [
+		{
+			"Columns": 3,
+			"Rows": 2,
+			"BgColor": "#e6f5ff",
+			"BgMedia": "http://www.jqueryscript.net/images/Simplest-Responsive-jQuery-Image-Lightbox-Plugin-simple-lightbox.jpg",
+			"BgMediaType": "picture",
+			"BgLoop": true,
+			"ActionType": "reply",
+			"ActionBody": "Yes"
+		}
+	]
+};
+
+//const message = new KeyboardMessage(SAMPLE_KEYBOARD, [optionalTrackingData]);
 
 bot.onSubscribe(response => {
     say(response, `Hi there ${response.userProfile.name}. I am ${bot.name}! Feel free to ask me if a web site is down for everyone or just you.\
@@ -69,6 +90,10 @@ function checkUrlAvailability(botResponse, urlToCheck) {
 }
 
 bot.onTextMessage(/./, (message, response) => {
+    if (message.text === 'button'){
+        saykeyboard(response);
+        return;
+    }
     checkUrlAvailability(response, message.text);
 })
 
