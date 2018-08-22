@@ -69,6 +69,10 @@ bot.onSubscribe(response => {
      Just send me a name of a website and I'll do the rest!`);
 });
 
+bot.on(BotEvents.CONVERSATION_STARTED, (response) => {
+    say(response, `Hello ${response.userProfile.name}. This is ON_CONVERSATION_STARTED test.`);
+});
+
 function checkUrlAvailability(botResponse, urlToCheck) {
 
     if (urlToCheck === '') {
