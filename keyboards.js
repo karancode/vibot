@@ -126,14 +126,14 @@ module.exports = {
                 "ActionType": "reply",
                 "ActionBody": "privatereason"
             },
-            {
+            /*{
                 "Columns": 6,
                 "Rows": 1,
                 "BgColor": "#EE340B",
                 "Text": "Other",
                 "ActionType": "reply",
                 "ActionBody": "Please send your late reason!"
-            },
+            },*/
         ]
     }
 };
