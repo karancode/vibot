@@ -22,12 +22,6 @@ function createLogger() {
 
 const logger = createLogger();
 
-/* healthcheck for heroku-sleep content */
-request.get('/', (error, response) => {
-    if(error) return response.send(error);
-    return response.send("Hello! Subscribe to Public Bot \"vibot\" ");
-});
-
 function say(response, message) {
     response.send(new TextMessage(message));
 }
@@ -51,7 +45,6 @@ function on_halfdayoff_keyboard(response){
 function reason_keyboard(response){
     response.send(new KeyboardMessage(keyboards.REASON_KEYBOARD));
 }
-
 
 // Creating the bot with access token, name and avatar
 const bot = new ViberBot(logger, {
