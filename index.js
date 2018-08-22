@@ -83,6 +83,7 @@ bot.onTextMessage(/./, (message, response) => {
     }else{
         response.send(new TextMessage("Sorry I do not understand. Please send \"Hi\" "));
     }
+    //modification
 })
 
 if (process.env.NOW_URL || process.env.HEROKU_URL) {
