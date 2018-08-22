@@ -46,8 +46,8 @@ function on_halfdayoff_keyboard(response){
 
 function reason_keyboard(response){
     response.send(new KeyboardMessage(keyboards.REASON_KEYBOARD));
-    response.send(new TextMessage("Noted. Thanks! :) "));
 }
+
 
 // Creating the bot with access token, name and avatar
 const bot = new ViberBot(logger, {
@@ -78,6 +78,8 @@ bot.onTextMessage(/./, (message, response) => {
         reason_keyboard(response);
     }else if(message.text === 'pmoff'){
         reason_keyboard(response);
+    }else if(message.text === 'privatereason'){
+        response.send("Noted. Thanks! :) ");
     }else{
         response.send(new TextMessage("Sorry I do not understand. Please send \"Hi\" "));
     }
