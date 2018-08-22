@@ -100,7 +100,6 @@ module.exports = {
                 "ActionBody": "privatereason"
             }
         ]
-    }
     },
     HALFDAYOFF_KEYBOARD : {
         "Type": "keyboard",
