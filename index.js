@@ -1,6 +1,7 @@
 // index.js
 
 const localConfig = require('./config');
+const keyboards = require('./keyboards');
 
 const ViberBot = require('viber-bot').Bot;
 const BotEvents = require('viber-bot').Events;
@@ -24,10 +25,12 @@ const logger = createLogger();
 function say(response, message) {
     response.send(new TextMessage(message));
 }
+
 function saykeyboard(response){
-    response.send(new KeyboardMessage(SAMPLE_KEYBOARD));
+    response.send(new KeyboardMessage(keyboards.OPTION_KEYBOARD));
 }
 
+/*
 // Creating the bot with access token, name and avatar
 const bot = new ViberBot(logger, {
     authToken: localConfig.viber_auth_token, // <--- Paste your token here
@@ -60,7 +63,7 @@ const SAMPLE_KEYBOARD = {
             "ActionBody": "Yes"
         }
 	]
-};
+};*/
 
 //const message = new KeyboardMessage(SAMPLE_KEYBOARD, [optionalTrackingData]);
 
@@ -69,9 +72,9 @@ bot.onSubscribe(response => {
      Just send me a name of a website and I'll do the rest!`);
 });
 
-bot.on(BotEvents.CONVERSATION_STARTED, (response) => {
+/*bot.on(BotEvents.CONVERSATION_STARTED, (response) => {
     say(response, `Hello ${response.userProfile.name}. This is ON_CONVERSATION_STARTED test.`);
-});
+});*/
 
 function checkUrlAvailability(botResponse, urlToCheck) {
 
@@ -104,7 +107,7 @@ function checkUrlAvailability(botResponse, urlToCheck) {
 }
 
 bot.onTextMessage(/./, (message, response) => {
-    if (message.text === 'button'){
+    if (message.text === 'Hi'){
         saykeyboard(response);
         return;
     }
