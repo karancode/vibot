@@ -30,7 +30,7 @@ function saykeyboard(response){
     response.send(new KeyboardMessage(keyboards.OPTION_KEYBOARD));
 }
 
-/*
+
 // Creating the bot with access token, name and avatar
 const bot = new ViberBot(logger, {
     authToken: localConfig.viber_auth_token, // <--- Paste your token here
@@ -38,6 +38,7 @@ const bot = new ViberBot(logger, {
     avatar: "http://api.adorable.io/avatar/200/isitup" // It is recommended to be 720x720, and no more than 100kb.
 });
 
+/*
 const SAMPLE_KEYBOARD = {
 	"Type": "keyboard",
 	"Revision": 1,
