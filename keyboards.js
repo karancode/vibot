@@ -25,7 +25,7 @@ module.exports = {
                 "Columns": 6,
                 "Rows": 1,
                 "BgColor": "#EE340B",
-                "Text": "Day Off",
+                "Text": "Half Day Off",
                 "ActionType": "reply",
                 "ActionBody": "HalfDayOff"
             }
