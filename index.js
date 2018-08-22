@@ -35,7 +35,7 @@ function on_late_keyboard(response){
 }
 
 function on_dayoff_keyboard(response){
-    response.send(new KeyboardEvent(keyboards.DAYOFF_KEYBOARD));
+    response.send(new KeyboardMessage(keyboards.DAYOFF_KEYBOARD));
 }
 
 function on_halfdayoff_keyboard(response){
@@ -71,7 +71,7 @@ bot.onTextMessage(/./, (message, response) => {
         case '30min':
         case '1hr':
         case 'more1hr':
-            response.send(new TextMessage("Noted. Please don't be late. Thanks!"));
+            reason_keyboard(response);
             break;    
         case 'DayOff':
             on_dayoff_keyboard(response);
