@@ -41,11 +41,11 @@ function on_late_keyboard(response){
 }*/
 
 function on_halfdayoff_keyboard(response){
-    response.send(new KeyboardEvent(keyboards.HALFDAYOFF_KEYBOARD));
+    response.send(new KeyboardMessage(keyboards.HALFDAYOFF_KEYBOARD));
 }
 
 function reason_keyboard(response){
-    response.send(new KeyboardEvent(keyboards.REASON_KEYBOARD));
+    response.send(new KeyboardMessage(keyboards.REASON_KEYBOARD));
     response.send(new TextMessage("Noted. Thanks! :) "));
 }
 
