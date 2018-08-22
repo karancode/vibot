@@ -26,93 +26,61 @@ function say(response, message) {
     response.send(new TextMessage(message));
 }
 
-function saykeyboard(response){
+function on_option_kyboard(response){
     response.send(new KeyboardMessage(keyboards.OPTION_KEYBOARD));
 }
 
+function on_late_keyboard(response){
+    response.send(new KeyboardMessage(keyboards.LATE_KEYBOARD));
+}
+
+/*function on_dayoff_keyboard(response){
+    //response.send(new KeyboardEvent(keyboards.DAYOFF_KEYBOARD));
+    //ask reason directly
+    response.send(new KeyboardMessage(keyboards.REASON_KEYBOARD));
+}*/
+
+function on_halfdayoff_keyboard(response){
+    response.send(new KeyboardEvent(keyboards.HALFDAYOFF_KEYBOARD));
+}
+
+function reason_keyboard(response){
+    response.send(new KeyboardEvent(keyboards.REASON_KEYBOARD));
+    response.send(new TextMessage("Noted. Thanks! :) "));
+}
 
 // Creating the bot with access token, name and avatar
 const bot = new ViberBot(logger, {
     authToken: localConfig.viber_auth_token, // <--- Paste your token here
-    name: "Is It Up",  // <--- Your bot name here
-    avatar: "http://api.adorable.io/avatar/200/isitup" // It is recommended to be 720x720, and no more than 100kb.
+    name: "Vibot",  // <--- Your bot name here
+    avatar: "http://api.adorable.io/avatar/108" // It is recommended to be 720x720, and no more than 100kb.
 });
-
-/*
-const SAMPLE_KEYBOARD = {
-	"Type": "keyboard",
-	"Revision": 1,
-	"Buttons": [
-		{
-			"Columns": 3,
-			"Rows": 2,
-			"BgColor": "#e6f5ff",
-			"BgMedia": "http://www.jqueryscript.net/images/Simplest-Responsive-jQuery-Image-Lightbox-Plugin-simple-lightbox.jpg",
-			"BgMediaType": "picture",
-			"BgLoop": true,
-			"ActionType": "reply",
-			"ActionBody": "Yes"
-        },
-        {
-			"Columns": 3,
-			"Rows": 2,
-			"BgColor": "#e6f5ff",
-			"BgMedia": "http://api.adorable.io/avatar/200",
-			"BgMediaType": "picture",
-			"BgLoop": true,
-			"ActionType": "reply",
-            "ActionBody": "Yes"
-        }
-	]
-};*/
-
-//const message = new KeyboardMessage(SAMPLE_KEYBOARD, [optionalTrackingData]);
 
 bot.onSubscribe(response => {
     say(response, `Hi there ${response.userProfile.name}. I am ${bot.name}! Feel free to ask me if a web site is down for everyone or just you.\
      Just send me a name of a website and I'll do the rest!`);
 });
 
-/*bot.on(BotEvents.CONVERSATION_STARTED, (response) => {
-    say(response, `Hello ${response.userProfile.name}. This is ON_CONVERSATION_STARTED test.`);
-});*/
-
-function checkUrlAvailability(botResponse, urlToCheck) {
-
-    if (urlToCheck === '') {
-        say(botResponse, 'I need a URL to check');
-        return;
-    }
-
-    say(botResponse, 'One second...Let me check!');
-
-    var url = urlToCheck.replace(/^http:\/\//, '');
-    request('http://isup.me/' + url, function (error, requestResponse, body) {
-        if (error || requestResponse.statusCode !== 200) {
-            say(botResponse, 'Something is wrong with isup.me.');
-            return;
-        }
-
-        if (!error && requestResponse.statusCode === 200) {
-            if (body.search('is up') !== -1) {
-                say(botResponse, 'Hooray! ' + urlToCheck + '. looks good to me.');
-            } else if (body.search('Huh') !== -1) {
-                say(botResponse, 'Hmmmmm ' + urlToCheck + '. does not look like a website to me. Typo? please follow the format `test.com`');
-            } else if (body.search('down from here') !== -1) {
-                say(botResponse, 'Oh no! ' + urlToCheck + '. is broken.');
-            } else {
-                say(botResponse, 'Snap...Something is wrong with isup.me.');
-            }
-        }
-    })
-}
-
 bot.onTextMessage(/./, (message, response) => {
     if (message.text === 'Hi'){
-        saykeyboard(response);
-        return;
+        on_option_kyboard(response);
+    }else if (message.text === 'Late'){
+        // late details
+        on_late_keyboard(response); 
+    }else if (message.text === 'DayOff'){
+        // day off details
+        //on_dayoff_keyboard(response);
+        reason_keyboard(response);
+    }else if (message.text === 'HalfDayOff'){
+        // half day off details
+        on_halfdayoff_keyboard(response);
+    }else if(message.text === 'amoff'){
+        reason_keyboard(response);
+    }else if(message.text === 'pmoff'){
+        reason_keyboard(response);
+    }else{
+        response.send(new TextMessage("Sorry I do not understand. Please send \"Hi\" "));
     }
-    checkUrlAvailability(response, message.text);
 })
 
 if (process.env.NOW_URL || process.env.HEROKU_URL) {
