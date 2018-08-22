@@ -40,15 +40,24 @@ const SAMPLE_KEYBOARD = {
 	"Revision": 1,
 	"Buttons": [
 		{
-			"Columns": 3,
-			"Rows": 2,
+			"Columns": 1,
+			"Rows": 1,
 			"BgColor": "#e6f5ff",
 			"BgMedia": "http://www.jqueryscript.net/images/Simplest-Responsive-jQuery-Image-Lightbox-Plugin-simple-lightbox.jpg",
 			"BgMediaType": "picture",
 			"BgLoop": true,
 			"ActionType": "reply",
 			"ActionBody": "Yes"
-		}
+        },
+        {
+			"Columns": 2,
+			"Rows": 1,
+			"BgColor": "#e6f5ff",
+			"BgMedia": "http://api.adorable.io/avatar/200",
+			"BgMediaType": "picture",
+			"BgLoop": true,
+			"ActionType": "reply",
+			"ActionBody": "Yes"}
 	]
 };
 
