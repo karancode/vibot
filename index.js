@@ -79,7 +79,7 @@ bot.onTextMessage(/./, (message, response) => {
     }else if(message.text === 'pmoff'){
         reason_keyboard(response);
     }else if(message.text === 'privatereason'){
-        response.send("Noted. Thanks! :) ");
+        response.send(new TextMessage("Noted. Thanks! :) "));
     }else{
         response.send(new TextMessage("Sorry I do not understand. Please send \"Hi\" "));
     }
