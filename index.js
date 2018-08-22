@@ -22,6 +22,12 @@ function createLogger() {
 
 const logger = createLogger();
 
+/* healthcheck for heroku-sleep content */
+request.get('/', (error, response) => {
+    if(error) return response.send(error);
+    return response.send("Hello! Subscribe to Public Bot \"vibot\" ");
+});
+
 function say(response, message) {
     response.send(new TextMessage(message));
 }
