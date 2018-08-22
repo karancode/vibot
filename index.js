@@ -34,11 +34,9 @@ function on_late_keyboard(response){
     response.send(new KeyboardMessage(keyboards.LATE_KEYBOARD));
 }
 
-/*function on_dayoff_keyboard(response){
-    //response.send(new KeyboardEvent(keyboards.DAYOFF_KEYBOARD));
-    //ask reason directly
-    response.send(new KeyboardMessage(keyboards.REASON_KEYBOARD));
-}*/
+function on_dayoff_keyboard(response){
+    response.send(new KeyboardEvent(keyboards.DAYOFF_KEYBOARD));
+}
 
 function on_halfdayoff_keyboard(response){
     response.send(new KeyboardMessage(keyboards.HALFDAYOFF_KEYBOARD));
@@ -62,28 +60,38 @@ bot.onSubscribe(response => {
 });
 
 bot.onTextMessage(/./, (message, response) => {
-    if (message.text === 'Hi'){
-        on_option_kyboard(response);
-    }else if (message.text === 'Late'){
-        // late details
-        on_late_keyboard(response); 
-    }else if (message.text === 'DayOff'){
-        // day off details
-        //on_dayoff_keyboard(response);
-        reason_keyboard(response);
-    }else if (message.text === 'HalfDayOff'){
-        // half day off details
-        on_halfdayoff_keyboard(response);
-    }else if(message.text === 'amoff'){
-        reason_keyboard(response);
-    }else if(message.text === 'pmoff'){
-        reason_keyboard(response);
-    }else if(message.text === 'privatereason'){
-        response.send(new TextMessage("Noted. Thanks! :) "));
-    }else{
-        response.send(new TextMessage("Sorry I do not understand. Please send \"Hi\" "));
+    switch(message.text) {
+        case 'Hi':
+            on_option_kyboard(response);
+            break;
+        case 'Late':
+            on_late_keyboard(response); 
+            break;
+        case '5to10min':
+        case '30min':
+        case '1hr':
+        case 'more1hr':
+            response.send(new TextMessage("Noted. Please don't be late. Thanks!"));
+            break;    
+        case 'DayOff':
+            on_dayoff_keyboard(response);
+            break;
+        case 'HalfDayOff':
+            on_halfdayoff_keyboard(response);
+            break;
+        case 'amoff':
+        case 'pmoff':
+            reason_keyboard(response);
+            break;
+        case 'privatereason':
+        case 'traindelay':
+        case 'badhealth':
+        case 'trainingtrip':
+            response.send(new TextMessage("Noted. Thanks!"));
+            break;
+        default :
+            response.send(new TextMessage("Sorry I do not understand. Please send \"Hi\" "));
     }
-    //modification
 })
 
 if (process.env.NOW_URL || process.env.HEROKU_URL) {

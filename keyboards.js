@@ -71,9 +71,37 @@ module.exports = {
             }
         ]
     },
-    /*DAYOFF_KEYBOARD : {
-
-    },*/
+    DAYOFF_KEYBOARD : {
+        "Type": "keyboard",
+        "Revision": 1,
+        "Buttons": [
+            {
+                "Columns": 6,
+                "Rows": 1,
+                "BgColor": "#EE340B",
+                "Text": "Bad Health",
+                "ActionType": "reply",
+                "ActionBody": "badhealth"
+            },
+            {
+                "Columns": 6,
+                "Rows": 1,
+                "BgColor": "#EE340B",
+                "Text": "Training / Business Trip",
+                "ActionType": "reply",
+                "ActionBody": "trainingtrip"
+            },
+            {
+                "Columns": 6,
+                "Rows": 1,
+                "BgColor": "#EE340B",
+                "Text": "Private",
+                "ActionType": "reply",
+                "ActionBody": "privatereason"
+            }
+        ]
+    }
+    },
     HALFDAYOFF_KEYBOARD : {
         "Type": "keyboard",
         "Revision": 1,
