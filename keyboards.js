@@ -62,7 +62,7 @@ module.exports = {
                 "ActionBody": "1hr"
             },
             {
-                "Columns": 2,
+                "Columns": 3,
                 "Rows": 2,
                 "BgColor": "#2db9b9",
                 "Text": "> 1 Hour",
