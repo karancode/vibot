@@ -2,6 +2,7 @@
 
 const localConfig = require('./config');
 const keyboards = require('./keyboards');
+const bot_messages = require('./messages');
 
 const ViberBot = require('viber-bot').Bot;
 const BotEvents = require('viber-bot').Events;
@@ -27,27 +28,29 @@ function say(response, message) {
 }
 
 function on_option_kyboard(response){
-    response.send(new KeyboardMessage(keyboards.OPTION_KEYBOARD));
+    response.send(new TextMessage(bot_messages.ATTENDANCE_STATUS, keyboards.OPTION_KEYBOARD));
+    //response.send(new KeyboardMessage(keyboards.OPTION_KEYBOARD));
 }
 
 function on_late_keyboard(response){
-    response.send(new KeyboardMessage(keyboards.LATE_KEYBOARD));
+    response.send(new TextMessage(bot_messages.LATE_TIME, keyboards.LATE_KEYBOARD));
+    //response.send(new KeyboardMessage(keyboards.LATE_KEYBOARD));
 }
 
-/*function on_dayoff_keyboard(response){
-    //response.send(new KeyboardEvent(keyboards.DAYOFF_KEYBOARD));
-    //ask reason directly
-    response.send(new KeyboardMessage(keyboards.REASON_KEYBOARD));
-}*/
+function on_dayoff_keyboard(response){
+    response.send(new TextMessage(bot_messages.DAYOFF_REASON, keyboards.DAYOFF_KEYBOARD));
+    //response.send(new KeyboardMessage(keyboards.DAYOFF_KEYBOARD));
+}
 
 function on_halfdayoff_keyboard(response){
-    response.send(new KeyboardMessage(keyboards.HALFDAYOFF_KEYBOARD));
+    response.send(new TextMessage(bot_messages.HALFDAYOFF_REASON, keyboards.HALFDAYOFF_KEYBOARD));
+    //response.send(new KeyboardMessage(keyboards.HALFDAYOFF_KEYBOARD));
 }
 
 function reason_keyboard(response){
-    response.send(new KeyboardMessage(keyboards.REASON_KEYBOARD));
+    response.send(new TextMessage(bot_messages.RECORD_REASON, keyboards.REASON_KEYBOARD));
+    //response.send(new KeyboardMessage(keyboards.REASON_KEYBOARD));
 }
-
 
 // Creating the bot with access token, name and avatar
 const bot = new ViberBot(logger, {
@@ -62,26 +65,37 @@ bot.onSubscribe(response => {
 });
 
 bot.onTextMessage(/./, (message, response) => {
-    if (message.text === 'Hi'){
-        on_option_kyboard(response);
-    }else if (message.text === 'Late'){
-        // late details
-        on_late_keyboard(response); 
-    }else if (message.text === 'DayOff'){
-        // day off details
-        //on_dayoff_keyboard(response);
-        reason_keyboard(response);
-    }else if (message.text === 'HalfDayOff'){
-        // half day off details
-        on_halfdayoff_keyboard(response);
-    }else if(message.text === 'amoff'){
-        reason_keyboard(response);
-    }else if(message.text === 'pmoff'){
-        reason_keyboard(response);
-    }else if(message.text === 'privatereason'){
-        response.send("Noted. Thanks! :) ");
-    }else{
-        response.send(new TextMessage("Sorry I do not understand. Please send \"Hi\" "));
+    switch(message.text) {
+        case 'Hi':
+            on_option_kyboard(response);
+            break;
+        case 'Late':
+            on_late_keyboard(response); 
+            break;
+        case '5to10min':
+        case '30min':
+        case '1hr':
+        case 'more1hr':
+            reason_keyboard(response);
+            break;    
+        case 'DayOff':
+            on_dayoff_keyboard(response);
+            break;
+        case 'HalfDayOff':
+            on_halfdayoff_keyboard(response);
+            break;
+        case 'amoff':
+        case 'pmoff':
+            reason_keyboard(response);
+            break;
+        case 'privatereason':
+        case 'traindelay':
+        case 'badhealth':
+        case 'trainingtrip':
+            response.send(new TextMessage("Noted. Thanks!"));
+            break;
+        default :
+            response.send(new TextMessage("Sorry I do not understand. Please send \"Hi\" "));
     }
 })
 
