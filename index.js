@@ -2,6 +2,7 @@
 
 const localConfig = require('./config');
 const keyboards = require('./keyboards');
+const bot_messages = require('./messages');
 
 const ViberBot = require('viber-bot').Bot;
 const BotEvents = require('viber-bot').Events;
@@ -27,28 +28,27 @@ function say(response, message) {
 }
 
 function on_option_kyboard(response){
-    response.send(new TextMessage("Hello! Please share your attendance status for today!\
-        You can choose from the options displayed to your keyboard :D ", keyboards.OPTION_KEYBOARD));
+    response.send(new TextMessage(bot_messages.ATTENDANCE_STATUS, keyboards.OPTION_KEYBOARD));
     //response.send(new KeyboardMessage(keyboards.OPTION_KEYBOARD));
 }
 
 function on_late_keyboard(response){
-    response.send(new TextMessage("Oh! Please tell me how late will you be ? ", keyboards.LATE_KEYBOARD));
+    response.send(new TextMessage(bot_messages.LATE_TIME, keyboards.LATE_KEYBOARD));
     //response.send(new KeyboardMessage(keyboards.LATE_KEYBOARD));
 }
 
 function on_dayoff_keyboard(response){
-    response.send(new TextMessage("Oh! Please tell me the reason for youe Day Off! ", keyboards.DAYOFF_KEYBOARD));
+    response.send(new TextMessage(bot_messages.DAYOFF_REASON, keyboards.DAYOFF_KEYBOARD));
     //response.send(new KeyboardMessage(keyboards.DAYOFF_KEYBOARD));
 }
 
 function on_halfdayoff_keyboard(response){
-    response.send(new TextMessage("Oh! Please tell me whether you will take AM Off or PM Off ! ", keyboards.HALFDAYOFF_KEYBOARD));
+    response.send(new TextMessage(bot_messages.HALFDAYOFF_REASON, keyboards.HALFDAYOFF_KEYBOARD));
     //response.send(new KeyboardMessage(keyboards.HALFDAYOFF_KEYBOARD));
 }
 
 function reason_keyboard(response){
-    response.send(new TextMessage("Understood! Could you please tell the reason ? ", keyboards.REASON_KEYBOARD));
+    response.send(new TextMessage(bot_messages.RECORD_REASON, keyboards.REASON_KEYBOARD));
     //response.send(new KeyboardMessage(keyboards.REASON_KEYBOARD));
 }
 
