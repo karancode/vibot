@@ -7,7 +7,7 @@ module.exports = {
             {
                 "Columns": 6,
                 "Rows": 1,
-                "BgColor": "#52AA08",
+                "BgColor": "#2db9b9",
                 "Text": "Late",
                 //TextVAlign, TextHAlign : using default (middle, center)
                 "ActionType": "reply",
@@ -16,7 +16,7 @@ module.exports = {
             {
                 "Columns": 6,
                 "Rows": 1,
-                "BgColor": "#EE340B",
+                "BgColor": "#2db9b9",
                 "Text": "Day Off",
                 "ActionType": "reply",
                 "ActionBody": "DayOff"
@@ -24,7 +24,7 @@ module.exports = {
             {
                 "Columns": 6,
                 "Rows": 1,
-                "BgColor": "#EE340B",
+                "BgColor": "#2db9b9",
                 "Text": "Half Day Off",
                 "ActionType": "reply",
                 "ActionBody": "HalfDayOff"
@@ -37,34 +37,34 @@ module.exports = {
         "Revision": 1,
         "Buttons": [
             {
-                "Columns": 6,
-                "Rows": 1,
-                "BgColor": "#52AA08",
+                "Columns": 3,
+                "Rows": 2,
+                "BgColor": "#2db9b9",
                 "Text": "5-10 Minutes",
                 //TextVAlign, TextHAlign : using default (middle, center)
                 "ActionType": "reply",
                 "ActionBody": "5to10min"
             },
             {
-                "Columns": 6,
-                "Rows": 1,
-                "BgColor": "#EE340B",
+                "Columns": 3,
+                "Rows": 2,
+                "BgColor": "#2db9b9",
                 "Text": "30 Minutes",
                 "ActionType": "reply",
                 "ActionBody": "30min"
             },
             {
-                "Columns": 6,
-                "Rows": 1,
-                "BgColor": "#EE340B",
+                "Columns": 3,
+                "Rows": 2,
+                "BgColor": "#2db9b9",
                 "Text": "1 Hour",
                 "ActionType": "reply",
                 "ActionBody": "1hr"
             },
             {
-                "Columns": 6,
-                "Rows": 1,
-                "BgColor": "#EE340B",
+                "Columns": 2,
+                "Rows": 2,
+                "BgColor": "#2db9b9",
                 "Text": "> 1 Hour",
                 "ActionType": "reply",
                 "ActionBody": "more1hr"
@@ -78,7 +78,7 @@ module.exports = {
             {
                 "Columns": 6,
                 "Rows": 1,
-                "BgColor": "#EE340B",
+                "BgColor": "#2db9b9",
                 "Text": "Bad Health",
                 "ActionType": "reply",
                 "ActionBody": "badhealth"
@@ -86,7 +86,7 @@ module.exports = {
             {
                 "Columns": 6,
                 "Rows": 1,
-                "BgColor": "#EE340B",
+                "BgColor": "#2db9b9",
                 "Text": "Training / Business Trip",
                 "ActionType": "reply",
                 "ActionBody": "trainingtrip"
@@ -94,7 +94,7 @@ module.exports = {
             {
                 "Columns": 6,
                 "Rows": 1,
-                "BgColor": "#EE340B",
+                "BgColor": "#2db9b9",
                 "Text": "Private",
                 "ActionType": "reply",
                 "ActionBody": "privatereason"
@@ -108,7 +108,7 @@ module.exports = {
             {
                 "Columns": 6,
                 "Rows": 1,
-                "BgColor": "#52AA08",
+                "BgColor": "#2db9b9",
                 "Text": "AM Off",
                 //TextVAlign, TextHAlign : using default (middle, center)
                 "ActionType": "reply",
@@ -117,7 +117,7 @@ module.exports = {
             {
                 "Columns": 6,
                 "Rows": 1,
-                "BgColor": "#EE340B",
+                "BgColor": "#2db9b9",
                 "Text": "PM Off",
                 "ActionType": "reply",
                 "ActionBody": "pmoff"
@@ -131,7 +131,7 @@ module.exports = {
             {
                 "Columns": 6,
                 "Rows": 1,
-                "BgColor": "#52AA08",
+                "BgColor": "#2db9b9",
                 "Text": "Train Delay",
                 //TextVAlign, TextHAlign : using default (middle, center)
                 "ActionType": "reply",
@@ -140,7 +140,7 @@ module.exports = {
             {
                 "Columns": 6,
                 "Rows": 1,
-                "BgColor": "#EE340B",
+                "BgColor": "#2db9b9",
                 "Text": "Bad Health",
                 "ActionType": "reply",
                 "ActionBody": "badhealth"
@@ -148,7 +148,7 @@ module.exports = {
             {
                 "Columns": 6,
                 "Rows": 1,
-                "BgColor": "#EE340B",
+                "BgColor": "#2db9b9",
                 "Text": "Private",
                 "ActionType": "reply",
                 "ActionBody": "privatereason"
@@ -156,7 +156,7 @@ module.exports = {
             /*{
                 "Columns": 6,
                 "Rows": 1,
-                "BgColor": "#EE340B",
+                "BgColor": "#2db9b9",
                 "Text": "Other",
                 "ActionType": "reply",
                 "ActionBody": "Please send your late reason!"
