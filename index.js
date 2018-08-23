@@ -27,22 +27,27 @@ function say(response, message) {
 }
 
 function on_option_kyboard(response){
+    response.send(new TextMessage("Hello! Please share your attendance status for today! \n You can choose from the options displayed to your keyboard :D "));
     response.send(new KeyboardMessage(keyboards.OPTION_KEYBOARD));
 }
 
 function on_late_keyboard(response){
+    response.send(new TextMessage("Oh! Please tell me how late will you be ? "));
     response.send(new KeyboardMessage(keyboards.LATE_KEYBOARD));
 }
 
 function on_dayoff_keyboard(response){
+    response.send(new TextMessage("Oh! Please tell me the reason for youe Day Off! "));
     response.send(new KeyboardMessage(keyboards.DAYOFF_KEYBOARD));
 }
 
 function on_halfdayoff_keyboard(response){
+    response.send(new TextMessage("Oh! Please tell me whether you will take AM Off or PM Off ! "));
     response.send(new KeyboardMessage(keyboards.HALFDAYOFF_KEYBOARD));
 }
 
 function reason_keyboard(response){
+    response.send(new TextMessage("Understood! Could you please tell the reason ? "));
     response.send(new KeyboardMessage(keyboards.REASON_KEYBOARD));
 }
 
