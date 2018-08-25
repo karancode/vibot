@@ -1,31 +1,20 @@
 //mail/sendmail.js
 
 var nodemailer = require('nodemailer');
+var mail_config = require('./mailconfig');
 
-//var transporter = nodemailer.createTransport('smtps://grbseruczehfr2x4@ethereal.email:xxxxxx@smtp.ethereal.email');
 
 var transporter = nodemailer.createTransport({
-    service : 'smtp.ethereal.com',
-    port : 465,
-    secure : true,
+    service : 'gmail',
     auth : {
-        user : 'grbseruczehfr2x4@ethereal.email',
-        pass : 'xxxxx'
-    }
-});
-
-const transporter = nodemailer.createTransport({
-    host: 'smtp.ethereal.email',
-    port: 587,
-    auth: {
-        user: 'grbseruczehfr2x4@ethereal.email',
-        pass: 'xxxxx'
+        user : mail_config.AUTH_EMAIL,
+        pass : mail_config.AUTH_EMAIL_PASSWORD
     }
 });
 
 var mail_options = {
-    from : 'grbseruczehfr2x4@ethereal.email',
-    to : 'ktnewtemp@gmail.com',
+    from : mail_config.SENDER_EMAIL,
+    to : mail_config.RECEIVER_EMAIL,
     subject : 'Test Email from nodemailer - node.js',
     text : 'The email came means it worked!'
 };
