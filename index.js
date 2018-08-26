@@ -5,7 +5,6 @@ const keyboards = require('./keyboards');
 const bot_messages = require('./messages');
 
 const email = require('./mail/sendmail');
-const mail_config = require('./mail/mailconfig');
 const nodemailer = require('nodemailer');
 
 
@@ -17,29 +16,6 @@ const winston = require('winston');
 const toYAML = require('winston-console-formatter');
 var request = require('request');
 
-
-var transporter = nodemailer.createTransport({
-    service : 'gmail',
-    auth : {
-        user : mail_config.AUTH_EMAIL,
-        pass : mail_config.AUTH_EMAIL_PASSWORD
-    }
-});
-
-var mail_options = {
-    from : mail_config.SENDER_EMAIL,
-    to : mail_config.RECEIVER_EMAIL,
-    subject : 'Test Email from nodemailer - node.js',
-    text : 'The email came means it worked!'
-};
-
-/*transporter.sendMail(mail_options, function(error, info){
-    if(error){
-        console.log("error happened: " + error);
-    }else{
-        console.log("Email sent: " + info.response);
-    }
-});*/
 
 function createLogger() {
     const logger = new winston.Logger({
@@ -122,15 +98,7 @@ bot.onTextMessage(/./, (message, response) => {
         case 'traindelay':
         case 'badhealth':
         case 'trainingtrip':
-            /*email.mailtransporter.sendMail(email.mailoptions, function(error, info){
-                if(error){
-                    console.log("error happened: " + error);
-                }else{
-                    console.log("Email sent: " + info.response);
-                    response.send(new TextMessage("Noted. Thanks!"));
-                }
-            });*/
-            transporter.sendMail(mail_options, function(error, info){
+            email.mailtransporter.sendMail(email.mailoptions, function(error, info){
                 if(error){
                     console.log("error happened: " + error);
                 }else{
@@ -138,7 +106,6 @@ bot.onTextMessage(/./, (message, response) => {
                     response.send(new TextMessage("Noted. Thanks!"));
                 }
             });
-
             break;
         default :
             response.send(new TextMessage("Sorry I do not understand. Please send \"Hi\" "));
