@@ -4,6 +4,10 @@ const localConfig = require('./config');
 const keyboards = require('./keyboards');
 const bot_messages = require('./messages');
 
+const email = require('./mail/sendmail');
+const nodemailer = require('nodemailer');
+
+
 const ViberBot = require('viber-bot').Bot;
 const BotEvents = require('viber-bot').Events;
 const TextMessage = require('viber-bot').Message.Text;
@@ -92,7 +96,14 @@ bot.onTextMessage(/./, (message, response) => {
         case 'traindelay':
         case 'badhealth':
         case 'trainingtrip':
-            response.send(new TextMessage("Noted. Thanks!"));
+            email.mailtransporter.sendMail(email.mailoptions, function(error, info){
+                if(error){
+                    console.log("error happened: " + error);
+                }else{
+                    console.log("Email sent: " + info.response);
+                    response.send(new TextMessage("Noted. Thanks!"));
+                }
+            }); 
             break;
         default :
             response.send(new TextMessage("Sorry I do not understand. Please send \"Hi\" "));

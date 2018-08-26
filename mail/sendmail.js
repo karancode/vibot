@@ -19,10 +19,13 @@ var mail_options = {
     text : 'The email came means it worked!'
 };
 
-transporter.sendMail(mail_options, function(error, info){
+/*transporter.sendMail(mail_options, function(error, info){
     if(error){
         console.log("error happened: " + error);
     }else{
         console.log("Email sent: " + info.response);
     }
-});
+});*/
+
+exports.mailtransporter = transporter;
+exports.mailoptions = mail_options;
