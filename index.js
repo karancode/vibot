@@ -72,7 +72,6 @@ bot.onSubscribe(response => {
 bot.onTextMessage(/./, (message, response) => {
     switch(message.text) {
         case 'Hi':
-            console.log("mail_consifg test --> " + mail_config.SENDER_EMAIL);
             on_option_kyboard(response);
             break;
         case 'Late':
