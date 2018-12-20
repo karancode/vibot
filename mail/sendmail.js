@@ -11,13 +11,12 @@ var transporter = nodemailer.createTransport({
         pass : mail_config.AUTH_EMAIL_PASSWORD
     }
 });
-
-var mail_options = {
+/*var mail_options = {
     from : mail_config.SENDER_EMAIL,
     to : mail_config.RECEIVER_EMAIL,
-    subject : 'Test Email from nodemailer - node.js',
+    subject : `[Attendance]`,
     text : 'The email came means it worked!'
-};
+};*/
 
 /*transporter.sendMail(mail_options, function(error, info){
     if(error){

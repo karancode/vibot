@@ -6,6 +6,7 @@ const bot_messages = require('./messages');
 
 const email = require('./mail/sendmail');
 const nodemailer = require('nodemailer');
+var mail_config = require('./mail/mailconfig');
 
 
 const ViberBot = require('viber-bot').Bot;
@@ -73,31 +74,44 @@ bot.onTextMessage(/./, (message, response) => {
     switch(message.text) {
         case 'Hi':
             on_option_kyboard(response);
+            let attendance_text = "\n =============================\n Attendance Details \n =============================\n";
             break;
         case 'Late':
             on_late_keyboard(response); 
+            attendance_text = attendance_text + "\n Status : Late";
             break;
         case '5to10min':
         case '30min':
         case '1hr':
         case 'more1hr':
             reason_keyboard(response);
+            attendance_text = attendance_text + "\n Late by : <<time>>";
             break;    
         case 'DayOff':
             on_dayoff_keyboard(response);
+            attendance_text = attendance_text + "\n Status : Day Off";
             break;
         case 'HalfDayOff':
             on_halfdayoff_keyboard(response);
+            attendance_text = attendance_text + "\n Status : Half Day Off";
             break;
         case 'amoff':
         case 'pmoff':
             reason_keyboard(response);
+            attendance_text = attendance_text + "\n Period : <<am/pm>>";
             break;
         case 'privatereason':
         case 'traindelay':
         case 'badhealth':
         case 'trainingtrip':
-            email.mailtransporter.sendMail(email.mailoptions, function(error, info){
+            attendance_text = attendance_text + "\n Reason : <<reason>>";
+            let mail_options = {
+                from : mail_config.SENDER_EMAIL,
+                to : mail_config.RECEIVER_EMAIL,
+                subject : `[Attendance]${response.userProfile.name}`,
+                text : `${attendance_text}`
+            };
+            email.mailtransporter.sendMail(mail_options, function(error, info){
                 if(error){
                     console.log("error happened: " + error);
                 }else{
