@@ -88,7 +88,7 @@ bot.onSubscribe(response => {
 });
 let attendance_text = "\n=====================================\n Attendance Details/出席の詳細 \n=====================================\n";
 let d = new Date();
-let date = d.getDate + "-" + d.getMonth + "-" + d.getFullYear + " " + d.getHours + ":" + d.getMinutes + ":" + d.getSeconds;
+let date = d.getDate() + "-" + d.getMonth() + "-" + d.getFullYear() + " " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
 
 bot.onTextMessage(/./, (message, response) => {
     switch(message.text) {
