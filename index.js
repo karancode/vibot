@@ -69,12 +69,13 @@ bot.onSubscribe(response => {
     say(response, `Hi there ${response.userProfile.name}. I am ${bot.name}! Feel free to ask me if a web site is down for everyone or just you.\
      Just send me a name of a website and I'll do the rest!`);
 });
+let attendance_text = "This is the attendance text...";
 
 bot.onTextMessage(/./, (message, response) => {
     switch(message.text) {
         case 'Hi':
             on_option_kyboard(response);
-            let attendance_text = "\n =============================\n Attendance Details \n =============================\n";
+            attendance_text = "\n =============================\n Attendance Details \n =============================\n";
             break;
         case 'Late':
             on_late_keyboard(response); 
