@@ -5,12 +5,7 @@ var mail_config = require('./mailconfig');
 
 
 var transporter = nodemailer.createTransport({
-    host : 'smtp-mail.outlook.com',
-    secureConnection : false,
-    port : 587,
-    tls : {
-        ciphers : 'SSLv3'
-    },
+    service : 'gmail',
     auth : {
         user : mail_config.AUTH_EMAIL,
         pass : mail_config.AUTH_EMAIL_PASSWORD
