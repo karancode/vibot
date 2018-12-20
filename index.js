@@ -78,6 +78,7 @@ function send_email(response, attendance_text){
             response.send(new TextMessage("Noted. Thanks!"));
         }
     });
+    attendance_text = ""; //to use global vars
 }
 
 // Creating the bot with access token, name and avatar
@@ -91,10 +92,11 @@ bot.onSubscribe(response => {
     say(response, `Hi there ${response.userProfile.name}.\n I am ${bot.name}! \n I am here to get your attendace details. \n Please send me 'Hi' anytime you want to record the attendance details! :)`);
 });
 
+let attendance_text = "\n=====================================\n Attendance Details/出席の詳細 \n=====================================\n";
+let d = new Date();
+let date = d.getDate() + "-" + d.getMonth() + "-" + d.getFullYear() + " " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
+    
 bot.onTextMessage(/./, (message, response) => {
-    let attendance_text = "\n=====================================\n Attendance Details/出席の詳細 \n=====================================\n";
-    let d = new Date();
-    let date = d.getDate() + "-" + d.getMonth() + "-" + d.getFullYear() + " " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
     switch(message.text) {
         case 'Hi':
             on_option_kyboard(response);
