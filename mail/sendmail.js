@@ -27,4 +27,4 @@ var transporter = nodemailer.createTransport({
 });*/
 
 exports.mailtransporter = transporter;
-exports.mailoptions = mail_options;
+//exports.mailoptions = mail_options;
