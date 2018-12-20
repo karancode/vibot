@@ -58,12 +58,8 @@ function reason_keyboard(response){
     //response.send(new KeyboardMessage(keyboards.REASON_KEYBOARD));
 }
 
-let attendance_text = "\n=====================================\n Attendance Details/出席の詳細 \n=====================================\n";
-let d = new Date();
-let date = d.getDate() + "-" + d.getMonth() + "-" + d.getFullYear() + " " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
-
 // function for sending email
-function send_email(response){
+function send_email(response, attendance_text){
     
     attendance_text = attendance_text + `\n\n\n\n\nThanks and Regards,\n${response.userProfile.name}\n\n\n\n\n\n --Sent via Vibot!`;
     
@@ -96,6 +92,9 @@ bot.onSubscribe(response => {
 });
 
 bot.onTextMessage(/./, (message, response) => {
+    let attendance_text = "\n=====================================\n Attendance Details/出席の詳細 \n=====================================\n";
+    let d = new Date();
+    let date = d.getDate() + "-" + d.getMonth() + "-" + d.getFullYear() + " " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
     switch(message.text) {
         case 'Hi':
             on_option_kyboard(response);
@@ -139,19 +138,19 @@ bot.onTextMessage(/./, (message, response) => {
             break;
         case 'privatereason':
             attendance_text = attendance_text + "\n Reason/理由 : Private Reason/私的理由";
-            send_email(response);
+            send_email(response, attendance_text);
             break;
         case 'traindelay':
             attendance_text = attendance_text + "\n Reason/理由 : Train Delay/列車遅延";
-            send_email(response);
+            send_email(response, attendance_text);
             break;
         case 'badhealth':
             attendance_text = attendance_text + "\n Reason/理由 : Bad Health/健康状態が悪い";
-            send_email(response);
+            send_email(response, attendance_text);
             break;
         case 'trainingtrip':
             attendance_text = attendance_text + "\n Reason/理由 : Office Training/オフィストレーニング";
-            send_email(response);
+            send_email(response, attendance_text);
             break;
         default :
             response.send(new TextMessage("Sorry I do not understand. Please send \"Hi\" "));
