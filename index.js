@@ -58,10 +58,14 @@ function reason_keyboard(response){
     //response.send(new KeyboardMessage(keyboards.REASON_KEYBOARD));
 }
 
+let attendance_text = "\n=====================================\n Attendance Details/出席の詳細 \n=====================================\n";
+let d = new Date();
+let date = d.getDate() + "-" + d.getMonth() + "-" + d.getFullYear() + " " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
+
 // function for sending email
 function send_email(response){
     
-    attendance_text = attendance_text + `\n\nThanks and Regards,\n${response.userProfile.name}\n\n --Sent via Vibot!`;
+    attendance_text = attendance_text + `\n\n\n\n\nThanks and Regards,\n${response.userProfile.name}\n\n\n\n\n\n --Sent via Vibot!`;
     
     let mail_options = {
         from : mail_config.SENDER_EMAIL,
@@ -69,6 +73,7 @@ function send_email(response){
         subject : `[Attendance]${response.userProfile.name}`,
         text : `${attendance_text}`
     };
+
     email.mailtransporter.sendMail(mail_options, function(error, info){
         if(error){
             console.log("error happened: " + error);
@@ -89,9 +94,6 @@ const bot = new ViberBot(logger, {
 bot.onSubscribe(response => {
     say(response, `Hi there ${response.userProfile.name}.\n I am ${bot.name}! \n I am here to get your attendace details. \n Please send me 'Hi' anytime you want to record the attendance details! :)`);
 });
-let attendance_text = "\n=====================================\n Attendance Details/出席の詳細 \n=====================================\n";
-let d = new Date();
-let date = d.getDate() + "-" + d.getMonth() + "-" + d.getFullYear() + " " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
 
 bot.onTextMessage(/./, (message, response) => {
     switch(message.text) {
