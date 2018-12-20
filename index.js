@@ -84,11 +84,11 @@ const bot = new ViberBot(logger, {
 });
 
 bot.onSubscribe(response => {
-    say(response, `Hi there ${response.userProfile.name}. I am ${bot.name}! Feel free to ask me if a web site is down for everyone or just you.\
-     Just send me a name of a website and I'll do the rest!`);
+    say(response, `Hi there ${response.userProfile.name}.\n I am ${bot.name}! \n I am here to get your attendace details. \n Please send me 'Hi' anytime you want to record the attendance details! :)`);
 });
 let attendance_text = "\n=====================================\n Attendance Details/出席の詳細 \n=====================================\n";
-let date = new Date();
+let d = new Date();
+let date = d.getDate + "-" + d.getMonth + "-" + d.getFullYear + " " + d.getHours + ":" + d.getMinutes + ":" + d.getSeconds;
 
 bot.onTextMessage(/./, (message, response) => {
     switch(message.text) {
