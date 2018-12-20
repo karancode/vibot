@@ -135,12 +135,15 @@ bot.onTextMessage(/./, (message, response) => {
         case 'privatereason':
             attendance_text = attendance_text + "\n Reason/理由 : Private Reason/私的理由";
             send_email(response);
+            break;
         case 'traindelay':
             attendance_text = attendance_text + "\n Reason/理由 : Train Delay/列車遅延";
             send_email(response);
+            break;
         case 'badhealth':
             attendance_text = attendance_text + "\n Reason/理由 : Bad Health/健康状態が悪い";
             send_email(response);
+            break;
         case 'trainingtrip':
             attendance_text = attendance_text + "\n Reason/理由 : Office Training/オフィストレーニング";
             send_email(response);
