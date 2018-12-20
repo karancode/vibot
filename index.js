@@ -61,7 +61,7 @@ function reason_keyboard(response){
 // function for sending email
 function send_email(response){
     
-    attendance_text = attendance_text + `\n\n Thanks and Regards,\n${response.userProfile.name}\n\n --Sent via Vibot!`;
+    attendance_text = attendance_text + `\n\nThanks and Regards,\n${response.userProfile.name}\n\n --Sent via Vibot!`;
     
     let mail_options = {
         from : mail_config.SENDER_EMAIL,
@@ -97,7 +97,7 @@ bot.onTextMessage(/./, (message, response) => {
     switch(message.text) {
         case 'Hi':
             on_option_kyboard(response);
-            attendance_text = `\n Date/日付 : ${date}`;
+            attendance_text = attendance_text + `\n Date/日付 : ${date}`;
             break;
         case 'Late':
             on_late_keyboard(response); 
